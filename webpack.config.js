@@ -1,20 +1,22 @@
 const path = require('path');
-//currently, babel-minify-webpack-plugin causes sourcemap problem. Either disable sourcemap or use another minifier
-//https://github.com/webpack-contrib/babel-minify-webpack-plugin/issues/68 
+//babel-minify-webpack-plugin and sourcemap problem: https://github.com/webpack-contrib/babel-minify-webpack-plugin/issues/68 
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const extractCSS = new ExtractTextPlugin({ filename: 'css/bundle.css' });
 
 module.exports = {
   entry: {
     main: './src/js/main.js',
     restaurant: './src/js/restaurant_info.js'
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
-  },
+  // devtool: 'inline-source-map',
+  // devServer: {
+  //   contentBase: './dist'
+  // },
   output: {
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -23,16 +25,19 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       name: 'commons'
-    }
+    },
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: extractCSS.extract({
+          fallback: 'style-loader',
+          use: [ 'css-loader' ]
+        })
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i, 
@@ -52,7 +57,8 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    // new MinifyPlugin(),
+    new MinifyPlugin(),
+    extractCSS,
     new CopyWebpackPlugin([
       { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] },
       { context: './src/', from: 'img/*', to: '' }
