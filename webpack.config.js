@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const extractCSS = new ExtractTextPlugin({ filename: 'css/bundle.css' });
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     main: './src/js/main.js',
     restaurant: './src/js/restaurant_info.js'
@@ -63,18 +63,18 @@ module.exports = {
     new MinifyPlugin(),
     extractCSS,
     new CopyWebpackPlugin([
-      { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] }
+      { context: './src/public/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] }
       // ,{ context: './src/', from: 'img/*', to: '' }
     ], { copyUnmodified: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html',
+      template: './src/public/index.html',
       chunks: ['commons', 'main'],
       inject: true
     }),
     new HtmlWebpackPlugin({
       filename: 'restaurant.html',
-      template: './src/restaurant.html',
+      template: './src/public/restaurant.html',
       chunks: ['commons', 'restaurant'],
       inject: true
     })

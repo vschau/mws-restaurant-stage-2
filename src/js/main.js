@@ -6,6 +6,10 @@ import L from 'leaflet';
 import DBHelper from './dbhelper';
 import { reg_sw } from './reg_sw';
 
+import marker1x from 'leaflet/dist/images/marker-icon.png';
+import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
 let restaurants,
     neighborhoods,
     cuisines;
@@ -171,9 +175,10 @@ let createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   const imgPath = DBHelper.imageUrlForRestaurant(restaurant);
-  image.src = imgPath;
-  // const imgBase = imgPath.slice(0, -4);
-  // image.setAttribute('srcset', imgBase + '_sm.jpg 510w, ' + imgBase + '_md.jpg 1x, ' + imgBase + '_lg.jpg 2x');
+  const imgBase = imgPath.slice(0, -4);
+  // image.src = imgPath;
+  image.src = imgBase + '_sm.jpg';
+  image.setAttribute('srcset', imgBase + '_sm.jpg 1x, ' + imgBase + '_md.jpg 2x');
   image.alt = restaurant.name + ' restaurant';
   li.append(image);
 

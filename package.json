@@ -4,8 +4,7 @@
   "description": "Restaurant Review Test",
   "main": "main.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development"
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
@@ -23,8 +22,9 @@
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1",
+    "gulp-responsive": "^2.11.0",
     "html-webpack-plugin": "^3.2.0",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "style-loader": "^0.21.0",

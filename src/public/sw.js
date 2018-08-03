@@ -12,17 +12,17 @@ const urlsToCache = [
   '/img/marker-icon.png',
   '/img/marker-icon-2x.png',
   '/img/marker-shadow.png',
-  '/img/1.jpg',
-  '/img/2.jpg',
-  '/img/3.jpg',
-  '/img/4.jpg',
-  '/img/5.jpg',
-  '/img/6.jpg',
-  '/img/7.jpg',
-  '/img/8.jpg',
-  '/img/9.jpg',
-  '/img/10.jpg',
-  '/img/undefined.jpg',
+  '/img/1_md.jpg',
+  '/img/2_md.jpg',
+  '/img/3_md.jpg',
+  '/img/4_md.jpg',
+  '/img/5_md.jpg',
+  '/img/6_md.jpg',
+  '/img/7_md.jpg',
+  '/img/8_md.jpg',
+  '/img/9_md.jpg',
+  '/img/10_md.jpg',
+  '/img/undefined_md.jpg'
 ];
 
 self.addEventListener('install', function(event) {
@@ -59,7 +59,8 @@ self.addEventListener('fetch', event => {
 
 // Helper functions
 function servePhoto(request) {
-  let url = request.url;
+  // let url = request.url;
+  let url = request.url.replace(/_sm/, '_md');
 
   return caches.open(staticCacheName).then(cache => {
     return cache.match(url).then(response => {
