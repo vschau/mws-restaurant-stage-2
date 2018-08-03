@@ -4,9 +4,8 @@
   "description": "Restaurant Review Test",
   "main": "main.js",
   "scripts": {
-    "build": "webpack --mode production && npm run img",
-    "watch": "webpack --mode production --watch && npm run img",
-    "img": "imagemin src/img/* --out-dir=dist/img"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development"
   },
   "repository": {
     "type": "git",
@@ -25,8 +24,9 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
-    "imagemin-cli": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "responsive-loader": "^1.1.0",
+    "sharp": "^0.20.5",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",

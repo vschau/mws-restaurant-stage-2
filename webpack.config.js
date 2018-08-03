@@ -60,7 +60,8 @@ module.exports = {
     new MinifyPlugin(),
     extractCSS,
     new CopyWebpackPlugin([
-      { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] }
+      { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] },
+      { context: './src/', from: 'img/*', to: '' }
     ], { copyUnmodified: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
