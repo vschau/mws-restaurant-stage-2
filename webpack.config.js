@@ -9,6 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const extractCSS = new ExtractTextPlugin({ filename: 'css/bundle.css' });
 
 module.exports = {
+  mode: 'development',
   entry: {
     main: './src/js/main.js',
     restaurant: './src/js/restaurant_info.js'
@@ -40,8 +41,10 @@ module.exports = {
         })
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i, 
-        loader: "file-loader?name=/img/[name].[ext]"
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          'file-loader?name=/img/[name].[ext]'
+        ]
       },
       {
         test: /\.js$/,
@@ -60,8 +63,8 @@ module.exports = {
     new MinifyPlugin(),
     extractCSS,
     new CopyWebpackPlugin([
-      { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] },
-      { context: './src/', from: 'img/*', to: '' }
+      { context: './src/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] }
+      // ,{ context: './src/', from: 'img/*', to: '' }
     ], { copyUnmodified: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
