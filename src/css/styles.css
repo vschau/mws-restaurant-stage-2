@@ -158,6 +158,10 @@ nav h1 a {
   background-color: #ccc;
 }
 
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 1);
+}
+
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   display: flex;

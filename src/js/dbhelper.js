@@ -15,22 +15,6 @@ export default class DBHelper {
     });
   }
 
-  static idbTest() {
-    DBHelper.idbPromise.then(function(db) {
-      if (db) {
-        fetch(DBHelper.DATABASE_URL)
-        .then(response => response.json())
-        .then(restaurants => {
-          let store = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
-
-          restaurants.forEach(function(restaurant) {
-            store.put(restaurant);
-          });
-        });
-      }
-    })
-  }
-
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
@@ -46,15 +30,45 @@ export default class DBHelper {
    * Success state calls callback with null for error and restaurant which is the json.parse of the responsetext
    */
   static fetchRestaurants(callback) {
-    // DBHelper.idbTest();
-    fetch(DBHelper.DATABASE_URL)
-      .then(response => response.json())
-      .then(restaurants => {
-        callback(null, restaurants);
-      })
-      .catch(error => {
-        callback(error, null);
-      });
+    // Try getting restaurants from indexDB
+
+    DBHelper.idbPromise.then(function(db) {
+      if (db) {
+        var index = db.transaction('restaurants').objectStore('restaurants').index('by-id');
+    
+        index.getAll().then(restaurants => {
+          if (restaurants.length>0) {
+            console.log('Got restaurants from DB: ', restaurants)
+            callback(null, restaurants);
+          }
+          else {
+            fetch(DBHelper.DATABASE_URL)
+              .then((response) => response.json())
+              .then((restaurants) => {
+                let store = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
+
+                restaurants.forEach(function(restaurant) {
+                  store.put(restaurant);
+                });
+                console.log('Added restaurants to the DB: ', restaurants)
+                callback(null, restaurants);
+              }).catch((error) => {
+                console.log('Error in fetching from server: ', error)
+                callback(error, null);
+              })
+          }
+        })
+      } else {
+        fetch(DBHelper.DATABASE_URL)
+        .then((response) => response.json())
+        .then((restaurants) => {
+          callback(null, restaurants);
+        }).catch((error) => {
+          console.log('Error in fetching from server: ', error)
+          callback(error, null);
+        })
+      }
+    })
   }
 
   /**
