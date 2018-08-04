@@ -2,6 +2,7 @@ import '../css/styles.css';
 
 import L from 'leaflet';
 import DBHelper from './dbhelper';
+import './lazysizes';
 import { reg_sw } from './reg_sw';
 
 let restaurants,
@@ -167,12 +168,12 @@ let createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
   li.setAttribute('tabIndex', '0');
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
-  const imgPath = DBHelper.imageUrlForRestaurant(restaurant);
-  const imgBase = imgPath.slice(0, -4);
-  // image.src = imgPath;
+  image.className = 'restaurant-img lazyload';
+  const imgBase = DBHelper.imageUrlForRestaurant(restaurant).slice(0, -4);
   image.src = imgBase + '_sm.jpg';
-  image.setAttribute('srcset', imgBase + '_sm.jpg 1x, ' + imgBase + '_md.jpg 2x');
+  image.setAttribute('data-sizes', 'auto');
+  image.setAttribute('data-src', imgBase + '_sm.jpg');
+  image.setAttribute('data-srcset', imgBase + '_sm.jpg 1x, ' + imgBase + '_md.jpg 2x');
   image.alt = restaurant.name + ' restaurant';
   li.append(image);
 
