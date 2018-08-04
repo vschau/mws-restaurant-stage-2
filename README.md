@@ -1,9 +1,14 @@
-# FEND - Restaurant Review Project
+# MWS - Restaurant Review Project - Stage 2
 ---
 
 ## Background
-
-For this **Restaurant Reviews** projects, a static webpage has been converted into a web application that is responsive on different sized displays and accessible for screen reader use. A service worker is also used to create a seamless offline experience for your users.
+Stage 2 of this project consists of the following enhancements to convert a static webpage to a mobile-ready web application:
+- Convert XHR to Fetch API
+- Use asynchronous JavaScript to request JSON data from the server
+- Store data received from the server in an offline database using IndexedDB
+- Add responsive images and lazy loading
+- Use webpack to bundle assets
+- Achieve 90+ [Lighthouse](https://developers.google.com/web/tools/lighthouse/) performance score for Performance, Progressive Web App (PWA), Accessibility, and Best Practices.
 
 ## Install
 The local dev API server:
@@ -32,7 +37,7 @@ The client: Note that you need
 - IndexedIDB Promised
 
 # Maintainers
-[@vschau](https://github.com/vschau).
+[@vschau](https://github.com/vschau)
 
 # Contribute
-This project is for the Nanodegree and will not accept pull requests.
+This project is for the Mobile Web Specialist Nanodegree and will not accept pull requests.
