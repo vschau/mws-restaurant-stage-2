@@ -7,9 +7,9 @@ import { reg_sw } from './reg_sw';
 
 let restaurants,
     neighborhoods,
-    cuisines;
-var newMap;
-var markers = [];
+    cuisines,
+    newMap,
+    markers = [];
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.

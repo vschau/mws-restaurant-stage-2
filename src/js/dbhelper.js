@@ -34,7 +34,7 @@ export default class DBHelper {
 
     DBHelper.idbPromise.then(function(db) {
       if (db) {
-        var index = db.transaction('restaurants').objectStore('restaurants').index('by-id');
+        const index = db.transaction('restaurants').objectStore('restaurants').index('by-id');
     
         index.getAll().then(restaurants => {
           if (restaurants.length>0) {

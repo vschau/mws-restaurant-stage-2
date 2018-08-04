@@ -40,11 +40,10 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', event => {
   let requestUrl = new URL(event.request.url);
 
-  // let cacheRequest = new Request(event.request.url, { mode: 'no-cors' });
-  let cacheRequest = new Request(event.request.url);
+  let cacheRequest = new Request(event.request.url, { mode: 'no-cors' });
 
   // serve images from cache.  If not available, fetch and insert into cache
-  if (requestUrl.hostname.indexOf('mapbox.com') > -1) {
+  if (requestUrl.pathname.startsWith('/img/') || requestUrl.hostname.indexOf('mapbox.com') > -1) {
     event.respondWith(servePhoto(cacheRequest));
     return;
   }
@@ -63,7 +62,6 @@ self.addEventListener('fetch', event => {
 
 // Helper functions
 function servePhoto(request) {
-  // let url = request.url;
   let url = request.url.replace(/_sm/, '_md');
 
   return caches.open(staticCacheName).then(cache => {
