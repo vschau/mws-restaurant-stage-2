@@ -22,6 +22,9 @@ module.exports = {
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  externals: {
+    leaflet: 'L'
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',

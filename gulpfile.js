@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
 var responsive = require('gulp-responsive');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('webpack', (done) => {
   gulp.src('src/js/')
@@ -24,6 +25,7 @@ gulp.task('responsive', (done) => {
         }
       ]
     }))
+    .pipe(imagemin())
     .pipe(gulp.dest('./dist/img'));
   done();
 });

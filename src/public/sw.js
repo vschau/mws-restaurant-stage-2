@@ -7,11 +7,9 @@ const urlsToCache = [
   '/js/main.bundle.js',
   '/js/commons.bundle.js',
   '/js/restaurant.bundle.js',
+  '/css/bundle.css',
   '/manifest.json',
   '/favicon.ico',
-  '/img/marker-icon.png',
-  '/img/marker-icon-2x.png',
-  '/img/marker-shadow.png',
   '/img/1_md.jpg',
   '/img/2_md.jpg',
   '/img/3_md.jpg',
@@ -22,7 +20,13 @@ const urlsToCache = [
   '/img/8_md.jpg',
   '/img/9_md.jpg',
   '/img/10_md.jpg',
-  '/img/undefined_md.jpg'
+  '/img/undefined_md.jpg',
+  'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
+  'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
+  'https://unpkg.com/leaflet@1.3.1/dist/images/marker-shadow.png',
+  'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
+  'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css'
 ];
 
 self.addEventListener('install', function(event) {

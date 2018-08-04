@@ -1,14 +1,8 @@
-import 'normalize.css/normalize.css';
-import 'leaflet/dist/leaflet.css';
 import '../css/styles.css';
 
 import L from 'leaflet';
 import DBHelper from './dbhelper';
 import { reg_sw } from './reg_sw';
-
-import marker1x from 'leaflet/dist/images/marker-icon.png';
-import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let restaurant;
 var newMap;
