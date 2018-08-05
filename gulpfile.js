@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack-gulp.config.js');
 const responsive = require('gulp-responsive');
 const imagemin = require('gulp-imagemin');
 
@@ -18,10 +18,10 @@ gulp.task('responsive', (done) => {
       '*.jpg': [
         {
           width: 400,
-          rename: { suffix: '_sm' },
+          rename: { suffix: '_400' },
         },
         {
-          rename: { suffix: '_md' },
+          rename: { suffix: '_800' },
         }
       ]
     }))

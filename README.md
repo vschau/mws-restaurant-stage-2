@@ -10,6 +10,9 @@ Stage 2 of this project consists of the following enhancements to convert a stat
 - Use webpack to bundle assets
 - Achieve 90+ [Lighthouse](https://developers.google.com/web/tools/lighthouse/) performance score for Performance, Progressive Web App (PWA), Accessibility, and Best Practices.
 
+## Important Notes
+- webpack-dev-server is only used for code development.  Images will be missing because they're only generated during build.
+
 ## Install
 The local dev API server:
 - Launch the sails server
@@ -24,8 +27,8 @@ The client: Note that you need
 - cd into the folder
 - `npm install`
 - `npm install http-server -g`
-- Note that you need to install [ImageMagick](https://www.imagemagick.org/script/download.php) (need to check mark 'Install legacy utilities' and 'Add application directory to your system path' during installation to resize the images.
 - `npm run build`
+- Alternative: instead of using `npm run build`, can use gulp instead.  Note that you need to install [ImageMagick](https://www.imagemagick.org/script/download.php) (need to check mark 'Install legacy utilities' and 'Add application directory to your system path' during installation to resize the images.
 - cd into the `dist` folder
 - Run `http-server . -p 3000`
 - Open http://localhost:3000 in the browser

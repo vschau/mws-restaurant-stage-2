@@ -5,6 +5,9 @@ import DBHelper from './dbhelper';
 import './lazysizes';
 import { reg_sw } from './reg_sw';
 
+//if we use file-loader, the original images will be emitted
+require.context('../public/img/', false, /\.jpg$/);
+
 let restaurant, newMap;
 
 /**
@@ -96,10 +99,10 @@ let fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img lazyload'
   const imgBase = DBHelper.imageUrlForRestaurant(restaurant).slice(0, -4);
-  image.src = imgBase + '_sm.jpg';
+  image.src = imgBase + '_400.jpg';
   image.setAttribute('data-sizes', 'auto');
-  image.setAttribute('data-src', imgBase + '_sm.jpg');
-  image.setAttribute('data-srcset', imgBase + '_sm.jpg 1x, ' + imgBase + '_md.jpg 2x');
+  image.setAttribute('data-src', imgBase + '_400.jpg');
+  image.setAttribute('data-srcset', imgBase + '_400.jpg 1x, ' + imgBase + '_800.jpg 2x');
   image.alt = restaurant.name + ' restaurant';
 
   const cuisine = document.getElementById('restaurant-cuisine');

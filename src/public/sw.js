@@ -10,17 +10,17 @@ const urlsToCache = [
   '/css/bundle.css',
   '/manifest.json',
   '/favicon.ico',
-  '/img/1_md.jpg',
-  '/img/2_md.jpg',
-  '/img/3_md.jpg',
-  '/img/4_md.jpg',
-  '/img/5_md.jpg',
-  '/img/6_md.jpg',
-  '/img/7_md.jpg',
-  '/img/8_md.jpg',
-  '/img/9_md.jpg',
-  '/img/10_md.jpg',
-  '/img/undefined_md.jpg',
+  '/img/1_800.jpg',
+  '/img/2_800.jpg',
+  '/img/3_800.jpg',
+  '/img/4_800.jpg',
+  '/img/5_800.jpg',
+  '/img/6_800.jpg',
+  '/img/7_800.jpg',
+  '/img/8_800.jpg',
+  '/img/9_800.jpg',
+  '/img/10_800.jpg',
+  '/img/undefined_800.jpg',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-shadow.png',
@@ -62,7 +62,7 @@ self.addEventListener('fetch', event => {
 
 // Helper functions
 function servePhoto(request) {
-  let url = request.url.replace(/_sm/, '_md');
+  let url = request.url.replace(/_400/, '_800');
 
   return caches.open(staticCacheName).then(cache => {
     return cache.match(url).then(response => {

@@ -7,7 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const extractCSS = new ExtractTextPlugin({ filename: 'css/bundle.css' });
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 module.exports = {
   mode: 'production',
@@ -44,16 +43,12 @@ module.exports = {
           use: [ 'css-loader' ]
         })
       },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: {
-          loader: 'responsive-loader',
-          options: {
-            sizes: [400],
-            name: 'img/[name]_[width].[ext]'
-          }
-        }
-      },
+      // {
+      //   test: /\.(jpe?g|png|gif|svg)$/i,
+      //   use: [
+      //     'file-loader?name=/img/[name].[ext]'
+      //   ]
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -70,10 +65,8 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new MinifyPlugin(),
     extractCSS,
-    new ImageminPlugin({test: /\.(png|jpg|gif)$/}),
     new CopyWebpackPlugin([
-      { context: './src/public/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] },
-      { context: './src/public/', from: 'img/*.jpg', to: 'img/[name]_800.[ext]' }
+      { context: './src/public/', from: '*', to: '', ignore: [ 'index.html', 'restaurant.html' ] }
     ], { copyUnmodified: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
